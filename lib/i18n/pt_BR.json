@@ -1,4 +1,11 @@
 {
     "notes": "Notas",
-    "search_notes": "Buscar notas..."
+    "search_notes": "Buscar notas...",
+    "are_you_sure_you_want_to_delete": "Tem certeza que deseja deletar?",
+    "yes": "Sim",
+    "no": "Não",
+    "title": "Título",
+    "content": "Conteúdo",
+    "edited": "Editado",
+    "successfully_copied": "Copiado com sucesso"
 }
