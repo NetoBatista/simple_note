@@ -1,16 +1,27 @@
-# simple_note
+## Simple note
 
-A new Flutter project.
+This application is open source feel free to create pull requests, to rate the code, report bugs or suggest new features.
 
-## Getting Started
+We do not collect any data.
 
-This project is a starting point for a Flutter application.
+Resources used
 
-A few resources to get you started if this is your first Flutter project:
+  * localization    
+  * flutter_modular    
+  * sqflite    
+  * intl    
+  * flutter_launcher_icons
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Features
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+  * Create note
+  * Update note
+  * Delete note
+  * Search note
+  * Copy full note
+
+
+## App images:
+<img src="https://github.com/NetoBatista/simple_note/assets/23426240/25c8cb59-8245-4efb-9b41-a8c65e3c7a61" width="200" />
+<img src="https://github.com/NetoBatista/simple_note/assets/23426240/242e9acf-1ad9-4677-a909-e57670822d76" width="200" />
+
