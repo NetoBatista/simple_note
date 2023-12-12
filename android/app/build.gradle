@@ -40,7 +40,7 @@ android {
         applicationId "br.com.jbsn.simple_note"
         minSdkVersion flutter.minSdkVersion
         targetSdkVersion flutter.targetSdkVersion
-        versionCode 2
+        versionCode 3
         versionName '1.0.0'
     }
 

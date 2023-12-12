@@ -39,7 +39,7 @@ class HomeNoteComponent extends StatelessWidget {
           ],
         ),
         subtitle: Text(
-          '${"edited".i18n()}: ${DateUtil.getFormattedDate(noteModel.date)}',
+          '${"edited".i18n()}: ${DateUtil.getFormattedDate(noteModel.date.toLocal())}',
           style: TextStyle(
               fontSize: 12,
               fontStyle: FontStyle.italic,
