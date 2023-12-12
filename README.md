@@ -21,6 +21,9 @@ Features
   * Copy full note
 
 
+To try the app you can download it:
+* [Google Play](https://play.google.com/store/apps/details?id=br.com.jbsn.simple_note)
+
 ## App images:
 <img src="https://github.com/NetoBatista/simple_note/assets/23426240/25c8cb59-8245-4efb-9b41-a8c65e3c7a61" width="200" />
 <img src="https://github.com/NetoBatista/simple_note/assets/23426240/242e9acf-1ad9-4677-a909-e57670822d76" width="200" />
