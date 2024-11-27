@@ -14,47 +14,40 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  Future<void> onTapCreate() async {
+    NavigationUtil.pushNamed(
+      '/note',
+      arguments: NoteModel(
+        id: 0,
+        title: '',
+        content: '',
+        date: DateTime.now().toUtc(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     var noteRepository = ContextUtil.watch<NoteRepository>(context);
 
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          NavigationUtil.pushNamed(
-            '/note',
-            arguments: NoteModel(
-              id: 0,
-              title: '',
-              content: '',
-              date: DateTime.now().toUtc(),
-            ),
-          );
-        },
-        child: const Icon(Icons.add_outlined),
+      appBar: AppBar(
+        title: Text('notes'.i18n()),
+        actions: [
+          IconButton(
+            onPressed: noteRepository.onChangeSort,
+            icon: const Icon(Icons.sort_outlined),
+          ),
+          IconButton(
+            onPressed: onTapCreate,
+            icon: const Icon(Icons.add),
+          ),
+        ],
       ),
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(16, 40, 16, 16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'notes'.i18n(),
-                  style: const TextStyle(fontSize: 36),
-                ),
-                IconButton(
-                  onPressed: noteRepository.onChangeSort,
-                  icon: const Icon(
-                    Icons.sort_outlined,
-                    color: Colors.white,
-                    size: 32,
-                  ),
-                )
-              ],
-            ),
-            const SizedBox(height: 16),
             TextFormField(
               onChanged: noteRepository.onChangeFilterNote,
               style: const TextStyle(
@@ -62,40 +55,26 @@ class _HomePageState extends State<HomePage> {
                 color: Colors.white,
               ),
               decoration: InputDecoration(
-                contentPadding: const EdgeInsets.symmetric(
-                  vertical: 12,
-                  horizontal: 12,
-                ),
-                filled: true,
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(30),
-                  borderSide: const BorderSide(color: Colors.transparent),
-                ),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(30),
-                  borderSide: const BorderSide(color: Colors.transparent),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(32),
                 ),
                 hintText: "search_notes".i18n(),
-                hintStyle: const TextStyle(
-                  color: Colors.grey,
-                ),
-                prefixIcon: const Icon(
+                prefixIcon: Icon(
                   Icons.search_outlined,
-                  color: Colors.grey,
                 ),
               ),
             ),
             const SizedBox(height: 16),
             Expanded(
-              child: ListView.builder(
+              child: ListView.separated(
                 shrinkWrap: true,
                 itemCount: noteRepository.notes.length,
-                itemBuilder: (context, index) {
+                separatorBuilder: (BuildContext context, int index) {
+                  return Padding(padding: EdgeInsets.only(bottom: 8));
+                },
+                itemBuilder: (BuildContext context, int index) {
                   var note = noteRepository.notes.elementAt(index);
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 8),
-                    child: HomeNoteComponent(note),
-                  );
+                  return HomeNoteComponent(note);
                 },
               ),
             ),

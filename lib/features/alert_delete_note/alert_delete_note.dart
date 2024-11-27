@@ -15,18 +15,15 @@ class AlertDeleteNote {
       context: _context,
       builder: (BuildContext context) {
         return AlertDialog(
-          icon: const Icon(
-            Icons.info_outline,
-            size: 32,
-          ),
-          title: Text('are_you_sure_you_want_to_delete'.i18n()),
+          title: Text('remove_note'.i18n()),
+          content: Text('are_you_sure_you_want_to_delete'.i18n()),
           actions: [
-            OutlinedButton(
+            TextButton(
               onPressed: NavigationUtil.pop,
               child: Text('no'.i18n()),
             ),
             const SizedBox(width: 16),
-            OutlinedButton(
+            TextButton(
               onPressed: () {
                 NavigationUtil.pop(true);
               },

@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:localization/localization.dart';
 import 'package:simple_note/core/model/note_motel.dart';
-import 'package:simple_note/core/repository/note_repository.dart';
-import 'package:simple_note/core/util/context_util.dart';
 import 'package:simple_note/core/util/date_util.dart';
 import 'package:simple_note/core/util/navigation_util.dart';
-import 'package:simple_note/features/alert_delete_note/alert_delete_note.dart';
 
 class HomeNoteComponent extends StatelessWidget {
   final NoteModel noteModel;
@@ -13,46 +10,44 @@ class HomeNoteComponent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var noteRepository = ContextUtil.watch<NoteRepository>(context);
-
     return Card(
-      elevation: 10,
-      child: ListTile(
+      child: InkWell(
         onTap: () {
           NavigationUtil.pushNamed('note', arguments: noteModel.clone());
         },
-        contentPadding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              noteModel.title,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            ),
-            Text(
-              noteModel.content,
-              style: const TextStyle(fontSize: 13),
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-            )
-          ],
-        ),
-        subtitle: Text(
-          '${"edited".i18n()}: ${DateUtil.getFormattedDate(noteModel.date.toLocal())}',
-          style: TextStyle(
-              fontSize: 12,
-              fontStyle: FontStyle.italic,
-              color: Colors.grey.shade500),
-        ),
-        trailing: IconButton(
-          onPressed: () async {
-            var deleteItem = await AlertDeleteNote(context).showAlertDelete();
-            if (deleteItem) {
-              await noteRepository.delete(noteModel);
-            }
-          },
-          icon: const Icon(Icons.delete),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                noteModel.title,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),
+              ),
+              SizedBox(height: 8),
+              Text(
+                noteModel.content,
+                style: const TextStyle(fontSize: 13),
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+              SizedBox(height: 8),
+              Text(
+                '${"edited".i18n()}: ${DateUtil.getFormattedDate(noteModel.date.toLocal())}',
+                style: TextStyle(
+                  fontSize: 12,
+                  fontStyle: FontStyle.italic,
+                  color: Colors.grey,
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
